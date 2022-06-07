@@ -1,0 +1,191 @@
+// coverage:ignore-file
+// GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+
+part of 'data.dart';
+
+// **************************************************************************
+// FreezedGenerator
+// **************************************************************************
+
+T _$identity<T>(T value) => value;
+
+final _privateConstructorUsedError = UnsupportedError(
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+
+/// @nodoc
+mixin _$AccountCredentials {
+  String? get email => throw _privateConstructorUsedError;
+  String? get name => throw _privateConstructorUsedError;
+  String? get username => throw _privateConstructorUsedError;
+  String? get lastOnline => throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $AccountCredentialsCopyWith<AccountCredentials> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $AccountCredentialsCopyWith<$Res> {
+  factory $AccountCredentialsCopyWith(
+          AccountCredentials value, $Res Function(AccountCredentials) then) =
+      _$AccountCredentialsCopyWithImpl<$Res>;
+  $Res call(
+      {String? email, String? name, String? username, String? lastOnline});
+}
+
+/// @nodoc
+class _$AccountCredentialsCopyWithImpl<$Res>
+    implements $AccountCredentialsCopyWith<$Res> {
+  _$AccountCredentialsCopyWithImpl(this._value, this._then);
+
+  final AccountCredentials _value;
+  // ignore: unused_field
+  final $Res Function(AccountCredentials) _then;
+
+  @override
+  $Res call({
+    Object? email = freezed,
+    Object? name = freezed,
+    Object? username = freezed,
+    Object? lastOnline = freezed,
+  }) {
+    return _then(_value.copyWith(
+      email: email == freezed
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String?,
+      name: name == freezed
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String?,
+      username: username == freezed
+          ? _value.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      lastOnline: lastOnline == freezed
+          ? _value.lastOnline
+          : lastOnline // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
+abstract class _$$_AccountCredentialsCopyWith<$Res>
+    implements $AccountCredentialsCopyWith<$Res> {
+  factory _$$_AccountCredentialsCopyWith(_$_AccountCredentials value,
+          $Res Function(_$_AccountCredentials) then) =
+      __$$_AccountCredentialsCopyWithImpl<$Res>;
+  @override
+  $Res call(
+      {String? email, String? name, String? username, String? lastOnline});
+}
+
+/// @nodoc
+class __$$_AccountCredentialsCopyWithImpl<$Res>
+    extends _$AccountCredentialsCopyWithImpl<$Res>
+    implements _$$_AccountCredentialsCopyWith<$Res> {
+  __$$_AccountCredentialsCopyWithImpl(
+      _$_AccountCredentials _value, $Res Function(_$_AccountCredentials) _then)
+      : super(_value, (v) => _then(v as _$_AccountCredentials));
+
+  @override
+  _$_AccountCredentials get _value => super._value as _$_AccountCredentials;
+
+  @override
+  $Res call({
+    Object? email = freezed,
+    Object? name = freezed,
+    Object? username = freezed,
+    Object? lastOnline = freezed,
+  }) {
+    return _then(_$_AccountCredentials(
+      email: email == freezed
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String?,
+      name: name == freezed
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String?,
+      username: username == freezed
+          ? _value.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      lastOnline: lastOnline == freezed
+          ? _value.lastOnline
+          : lastOnline // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_AccountCredentials implements _AccountCredentials {
+  _$_AccountCredentials(
+      {this.email, this.name, this.username, this.lastOnline});
+
+  @override
+  final String? email;
+  @override
+  final String? name;
+  @override
+  final String? username;
+  @override
+  final String? lastOnline;
+
+  @override
+  String toString() {
+    return 'AccountCredentials(email: $email, name: $name, username: $username, lastOnline: $lastOnline)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_AccountCredentials &&
+            const DeepCollectionEquality().equals(other.email, email) &&
+            const DeepCollectionEquality().equals(other.name, name) &&
+            const DeepCollectionEquality().equals(other.username, username) &&
+            const DeepCollectionEquality()
+                .equals(other.lastOnline, lastOnline));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(email),
+      const DeepCollectionEquality().hash(name),
+      const DeepCollectionEquality().hash(username),
+      const DeepCollectionEquality().hash(lastOnline));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$_AccountCredentialsCopyWith<_$_AccountCredentials> get copyWith =>
+      __$$_AccountCredentialsCopyWithImpl<_$_AccountCredentials>(
+          this, _$identity);
+}
+
+abstract class _AccountCredentials implements AccountCredentials {
+  factory _AccountCredentials(
+      {final String? email,
+      final String? name,
+      final String? username,
+      final String? lastOnline}) = _$_AccountCredentials;
+
+  @override
+  String? get email => throw _privateConstructorUsedError;
+  @override
+  String? get name => throw _privateConstructorUsedError;
+  @override
+  String? get username => throw _privateConstructorUsedError;
+  @override
+  String? get lastOnline => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(ignore: true)
+  _$$_AccountCredentialsCopyWith<_$_AccountCredentials> get copyWith =>
+      throw _privateConstructorUsedError;
+}

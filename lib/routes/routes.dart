@@ -1,0 +1,21 @@
+import 'package:get/get.dart';
+import 'package:moviedb/binding.dart';
+import 'package:moviedb/modules/home/page.dart';
+import 'package:moviedb/routes/routes_name.dart';
+
+/// Initialize the Routes of the Application
+/// and bind the necessary bindings to the Routes
+class AppRoutes {
+  static List<GetPage> getRoutes = [
+    // GetPage(
+    //   name: Routes.APP,
+    //   page: AuthenticationPage.new,
+    //   binding: AppBinding(),
+    // ),
+    GetPage(
+      name: Routes.APP,
+      page: HomePage.new,
+      binding: AppBinding(),
+    ),
+  ];
+}
