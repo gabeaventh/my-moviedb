@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:get/get.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:moviedb/models/reviews.dart';
+import 'package:moviedb/modules/movie_details/components/movie_detail_card.dart';
 import 'package:moviedb/modules/movie_details/cubit/movie_details_cubit.dart';
+import 'package:moviedb/modules/movie_details/data/tab_item.dart';
+import 'package:moviedb/widgets/basic_card.dart';
+import 'package:moviedb/widgets/button_tab.dart';
 
 class MovieDetailViewModel {
   final String? title;
@@ -27,88 +32,111 @@ class MovieDetailViewModel {
 }
 
 class MovieDetail extends HookConsumerWidget {
-  const MovieDetail({Key? key}) : super(key: key);
+  final List<MovieReviewTabitem> tabItems;
+  const MovieDetail({
+    required this.tabItems,
+  });
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return BlocBuilder<MovieDetailsCubit, MovieDetailsState>(
+    var currIndex = useState(0);
+    onPressed(int index) {
+      currIndex.value = index;
+    }
+
+    return BlocConsumer<MovieDetailsCubit, MovieDetailsState>(
       bloc: Get.find<MovieDetailsCubit>(),
+      listener: (context, state) {
+        if (state is MoviewDetailsStateError) {
+          Get.snackbar(
+            state.error?.type.name.toUpperCase() ?? '',
+            state.error?.message ?? '',
+          );
+        }
+      },
       builder: (context, state) {
-        MovieDetailViewModel? _details = state is MovieDetailsStateLoaded
-            ? state.details
-            : MovieDetailViewModel();
+        MovieDetailViewModel? _details =
+            state is MovieDetailsStateLoaded ? state.details : null;
+
         return Padding(
           padding: const EdgeInsets.all(12.0),
-          child: Card(
-            shape: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(8),
-                borderSide: BorderSide(color: Colors.white)),
-            child: Padding(
-              padding: const EdgeInsets.all(12.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  _details?.imagePath == null
-                      ? Container()
-                      : Image.network(
-                          _details!.imagePath!,
-                          fit: BoxFit.cover,
-                          height: 160,
-                        ),
-                  SizedBox(width: 12),
-                  Expanded(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      crossAxisAlignment: CrossAxisAlignment.start,
+          child: state is MovieDetailsStateLoading
+              ? Center(
+                  child: CircularProgressIndicator(),
+                )
+              : _details == null
+                  ? Container()
+                  : Column(
                       children: [
-                        Row(
-                          children: [
-                            Expanded(
-                              child: RichText(
-                                text: TextSpan(
-                                  children: [
-                                    TextSpan(
-                                      text: _details?.title ?? '',
-                                      style: TextStyle(
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                    TextSpan(
-                                      text: ' (${_details?.year ?? ''})',
-                                      style: TextStyle(
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ],
+                        MovieDetailsCard(details: _details),
+                        ButtonTab(
+                          tabItems: tabItems,
+                          onPressed: onPressed,
+                          alignment: Alignment.centerLeft,
+                          padding: EdgeInsets.only(top: 12),
                         ),
-                        SizedBox(height: 8),
-                        Container(
-                          child: Column(
-                            children: [
-                              buildDetailItems(
-                                  "User Score", _details?.userScore ?? ''),
-                              SizedBox(height: 8),
-                              buildDetailItems(
-                                  "Release Date", _details?.releaseDate ?? ''),
-                              SizedBox(height: 8),
-                              buildDetailItems(
-                                  "Genres", _details?.genres ?? ''),
-                            ],
-                          ),
-                        ),
+                        if (currIndex.value == 0) ...[
+                          _details.overview!.isEmpty
+                              ? Center(
+                                  child: Image.asset('assets/not-found.png'),
+                                )
+                              : MyBasicCard(
+                                  child: ListTile(
+                                    title: Text("${_details.overview}"),
+                                  ),
+                                )
+                        ] else ...[
+                          _details.reviews!.isEmpty
+                              ? Center(
+                                  child: Image.asset('assets/not-found.png'),
+                                )
+                              : Container(
+                                  width: MediaQuery.of(context).size.width,
+                                  child: ListView.builder(
+                                    physics: NeverScrollableScrollPhysics(),
+                                    shrinkWrap: true,
+                                    itemCount: _details.reviews?.length ?? 0,
+                                    itemBuilder: (context, index) {
+                                      return MyBasicCard(
+                                        child: ListTile(
+                                          title: Padding(
+                                            padding: const EdgeInsets.only(
+                                                bottom: 12),
+                                            child: Row(
+                                              children: [
+                                                CircleAvatar(
+                                                  radius: 24,
+                                                  backgroundColor:
+                                                      Colors.black45,
+                                                  child: Text(
+                                                    "${_details.reviews?[index].author?.toUpperCase()}"
+                                                        .split(' ')
+                                                        .map((e) =>
+                                                            e.substring(0, 1))
+                                                        .join(),
+                                                    style: TextStyle(
+                                                      fontSize: 24,
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                      color: Colors.black,
+                                                    ),
+                                                  ),
+                                                ),
+                                                SizedBox(width: 12),
+                                                Text(
+                                                    "${_details.reviews?[index].author}"),
+                                              ],
+                                            ),
+                                          ),
+                                          subtitle: Text(
+                                              "${_details.reviews?[index].content}"),
+                                        ),
+                                      );
+                                    },
+                                  ),
+                                )
+                        ],
                       ],
                     ),
-                  ),
-                ],
-              ),
-            ),
-          ),
         );
       },
     );

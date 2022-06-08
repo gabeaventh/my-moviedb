@@ -5,6 +5,8 @@ import 'package:moviedb/core/core_initiator.dart';
 import 'package:moviedb/modules/home/cubit/home_tab_cubit.dart';
 import 'package:moviedb/modules/home/data/data.dart';
 import 'package:moviedb/modules/movie/view.dart';
+import 'package:moviedb/modules/profile/view.dart';
+import 'package:moviedb/modules/television/view.dart';
 
 abstract class IHomeInitiator extends CoreInitiator {
   List<HomeSectionTabItem> get tabItems;
@@ -27,19 +29,19 @@ class HomeInitiator implements IHomeInitiator {
         HomeSectionTabItem(
           title: "Movie",
           content: MovieView(),
-          type: HomeSectionType.account,
+          type: HomeSectionType.movie,
           icon: Icons.account_box_rounded,
         ),
         HomeSectionTabItem(
           title: "TV",
-          content: Center(child: Text('TV')),
-          type: HomeSectionType.stockList,
+          content: TelevisionView(),
+          type: HomeSectionType.tv,
           icon: Icons.waterfall_chart,
         ),
         HomeSectionTabItem(
           title: "Profile",
-          content: Center(child: Text('Profile')),
-          type: HomeSectionType.watchList,
+          content: ProfileView(),
+          type: HomeSectionType.profile,
           icon: FontAwesomeIcons.binoculars,
         ),
       ];

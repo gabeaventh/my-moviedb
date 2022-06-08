@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
@@ -49,8 +48,6 @@ class MovieDetailsCubit extends CoreServiceCubit<MovieDetailsState> {
                           var userScore =
                               ((details.voteAverage?.toDouble() ?? 0) * 10)
                                   .ceil();
-
-                          debugPrint("$userScore THE USER SCOREE");
 
                           List<Review> movieReviews = reviews.results ?? [];
 

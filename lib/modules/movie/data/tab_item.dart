@@ -1,10 +1,11 @@
 import 'package:moviedb/modules/movie/components/movie_categories.dart';
+import 'package:moviedb/widgets/button_tab_item.dart';
 
-class MovieCategoryTabItems {
-  String title;
+class MovieCategoryTabItems extends ButtonTabItem {
   MovieCategories categories;
+
   MovieCategoryTabItems({
-    required this.title,
+    required String title,
     required this.categories,
-  });
+  }) : super(title: title);
 }

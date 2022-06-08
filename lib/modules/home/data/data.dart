@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 enum HomeSectionType {
-  account,
-  stockList,
-  watchList,
+  movie,
+  tv,
+  profile,
 }
 
 class HomeSectionTabItem {
