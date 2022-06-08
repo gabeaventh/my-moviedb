@@ -44,14 +44,9 @@ class _InitAppState extends State<InitApp> {
     //   );
     // }
 
-    debugPrint('MASUK');
-
     Log.init();
 
-    debugPrint('MASUK123');
-
     Env.instance?.initEnv();
-    debugPrint('MASUK654');
 
     return "next";
   }
@@ -62,11 +57,10 @@ class _InitAppState extends State<InitApp> {
       future: init(),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.done) {
-          // debugPrint();
           if (!snapshot.data.toString().contains("next")) {
             return Container();
           }
-          debugPrint('MASUK BASE');
+
           return const AppBase();
         }
         return CircularProgressIndicator();

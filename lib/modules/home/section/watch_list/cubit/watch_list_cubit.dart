@@ -1,17 +1,12 @@
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:get/get.dart';
 import 'package:moviedb/modules/home/section/stocks/data/stock.dart';
-import 'package:moviedb/modules/home/section/stocks/services/services.dart';
 
 part 'watch_list_cubit.freezed.dart';
 part 'watch_list_state.dart';
 
 class WatchListCubit extends Cubit<WatchListState> {
-  final StocksService _service;
-  WatchListCubit({StocksService? service})
-      : _service = service ?? Get.find<StocksService>(),
-        super(const WatchListState.initial());
+  WatchListCubit() : super(const WatchListState.initial());
   // final CollectionReference _fav =
   //     FirebaseFirestore.instance.collection('favorite');
 

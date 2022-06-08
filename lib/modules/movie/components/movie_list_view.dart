@@ -19,7 +19,10 @@ class MovieItemViewModel {
 }
 
 class MovieListView extends HookConsumerWidget {
-  MovieListView({Key? key}) : super(key: key);
+  final void Function(int id) toDetails;
+  MovieListView({
+    required this.toDetails,
+  });
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -40,36 +43,53 @@ class MovieListView extends HookConsumerWidget {
                     crossAxisCount: 2,
                   ),
                   itemCount: _items?.length,
-                  itemBuilder: (context, index) => GridTile(
-                    child: Image.network(
-                      "https://image.tmdb.org/t/p/w185${_items?[index].posterPath ?? ''}",
-                      // loadingBuilder: (context, child, loadingProgress) {
-                      //   if (loadingProgress == null) return child;
-                      //   return Center(
-                      //     child: CircularProgressIndicator(
-                      //       value: loadingProgress.expectedTotalBytes != null
-                      //           ? loadingProgress.cumulativeBytesLoaded /
-                      //               (loadingProgress.expectedTotalBytes ?? 0)
-                      //           : null,
-                      //     ),
-                      //   );
-                      // },
-                    ),
-                    footer: GridTileBar(
-                      title: Text(_items?[index].originalTitle ?? ''),
-                      subtitle: Text(_items?[index].releaseDate ?? ''),
-                      backgroundColor: Colors.black54,
-                      trailing: Row(
-                        children: [
-                          Icon(
-                            Icons.star,
-                            color: Colors.white,
+                  itemBuilder: (context, index) => GestureDetector(
+                    onTap: () => toDetails(_items?[index].id ?? 0),
+                    child: Padding(
+                      padding: const EdgeInsets.all(12.0),
+                      child: GridTile(
+                        child: Image.network(
+                          "https://image.tmdb.org/t/p/w185${_items?[index].posterPath ?? ''}",
+                          loadingBuilder: (context, child, loadingProgress) {
+                            if (loadingProgress == null) return child;
+                            return Center(
+                              child: CircularProgressIndicator(
+                                value: loadingProgress.expectedTotalBytes !=
+                                        null
+                                    ? loadingProgress.cumulativeBytesLoaded /
+                                        (loadingProgress.expectedTotalBytes ??
+                                            0)
+                                    : null,
+                              ),
+                            );
+                          },
+                        ),
+                        footer: GridTileBar(
+                          title: Row(
+                            children: [
+                              Expanded(
+                                child: Text(
+                                  _items?[index].title ?? '',
+                                  maxLines: 3,
+                                ),
+                              ),
+                            ],
                           ),
-                          Text(
-                            "${_items?[index].voteAverage ?? 0 * 10}%",
-                            style: TextStyle(color: Colors.white),
+                          subtitle: Text(_items?[index].releaseDate ?? ''),
+                          backgroundColor: Colors.black54,
+                          trailing: Row(
+                            children: [
+                              Icon(
+                                Icons.star,
+                                color: Colors.white,
+                              ),
+                              Text(
+                                "${((_items?[index].voteAverage ?? 0).toDouble() * 10).ceil()}%",
+                                style: TextStyle(color: Colors.white),
+                              ),
+                            ],
                           ),
-                        ],
+                        ),
                       ),
                     ),
                   ),

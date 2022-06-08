@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:get/get.dart';
 import 'package:moviedb/core/core_cubit.dart';
@@ -24,26 +23,15 @@ class MovieCubit extends CoreServiceCubit<MovieState> {
         : _titleSplit[0];
     _service.movieByCategory(_title).then(
       (either) {
-        debugPrint('FOLD LEFT OR RIGHT');
-        either.fold(
-          (result) {
-            debugPrint('FOLD LEFT');
-
-            emit(
-              MovieState.loaded(
-                viewModel: Movies.fromJson(result.response ?? {}),
-              ),
-            );
-          },
-          (error) {
-            debugPrint('FOLD RIGHT');
-
-            emit(
-              MovieState.error(
-                error: error,
-              ),
-            );
-          },
+        emit(
+          either.fold(
+            (result) => MovieState.loaded(
+              viewModel: Movies.fromJson(result.response ?? {}),
+            ),
+            (error) => MovieState.error(
+              error: error,
+            ),
+          ),
         );
       },
     );

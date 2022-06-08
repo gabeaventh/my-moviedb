@@ -14,9 +14,9 @@ class Movies {
 
   Movies.fromJson(Map<String, dynamic> json) {
     page = json['page'];
-    if (json['movieList'] != null) {
+    if (json['results'] != null) {
       movieList = <Movie>[];
-      json['movieList'].forEach((v) {
+      json['results'].forEach((v) {
         movieList!.add(Movie.fromJson(v));
       });
     }
@@ -29,7 +29,7 @@ class Movies {
     final Map<String, dynamic> data = Map<String, dynamic>();
     data['page'] = this.page;
     if (this.movieList != null) {
-      data['movieList'] = this.movieList!.map((v) => v.toJson()).toList();
+      data['results'] = this.movieList!.map((v) => v.toJson()).toList();
     }
     if (this.dates != null) {
       data['dates'] = this.dates!.toJson();
@@ -54,7 +54,7 @@ class Movie {
   double? popularity;
   int? voteCount;
   bool? video;
-  double? voteAverage;
+  num? voteAverage;
 
   Movie(
       {this.posterPath,

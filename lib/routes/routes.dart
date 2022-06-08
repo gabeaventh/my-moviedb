@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 import 'package:moviedb/binding.dart';
 import 'package:moviedb/modules/home/page.dart';
+import 'package:moviedb/modules/movie_details/view.dart';
 import 'package:moviedb/routes/routes_name.dart';
 
 /// Initialize the Routes of the Application
@@ -15,6 +16,11 @@ class AppRoutes {
     GetPage(
       name: Routes.APP,
       page: HomePage.new,
+      binding: AppBinding(),
+    ),
+    GetPage(
+      name: Routes.MOVIE_DETAILS,
+      page: MovieDetailsView.new,
       binding: AppBinding(),
     ),
   ];

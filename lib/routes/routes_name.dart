@@ -1,15 +1,14 @@
 abstract class Routes {
-  static const String HOME = _Paths.HOME;
-  static const String ACCOUNT = HOME + _Paths.ACCOUNT;
+  static const String ACCOUNT = APP + _Paths.ACCOUNT;
   static const APP = _Paths.APP;
-  static const STOCKLIST = HOME + _Paths.STOCKLIST;
-  static const WATCHLIST = HOME + _Paths.WATCHLIST;
+  static const MOVIE_DETAILS = APP + _Paths.MOVIE + _Paths.DETAILS;
+  static const TV_DETAILS = APP + _Paths.TV + _Paths.DETAILS;
 }
 
 abstract class _Paths {
-  static const HOME = '/home';
   static const ACCOUNT = '/account';
-  static const STOCKLIST = '/stocklist';
-  static const WATCHLIST = '/watchlist';
   static const APP = '/';
+  static const DETAILS = '/details';
+  static const MOVIE = 'movie';
+  static const TV = 'tv';
 }

@@ -18,9 +18,9 @@ class NetworkInterface {
 
   String? _userAgent = '';
   String? _osType = '';
-  String? _deviceId = '';
+  // String? _deviceId = '';
   String? _deviceName = '';
-  bool _isPhysicalDevice = true;
+  // bool _isPhysicalDevice = true;
   NetworkLibrary library = NetworkLibrary();
 
   Future<Either<NetworkModel, NetworkError>> get({
@@ -107,9 +107,9 @@ class NetworkInterface {
     DeviceInfoPlugin _deviceInfo = DeviceInfoPlugin();
     WebBrowserInfo _web = await _deviceInfo.webBrowserInfo;
     _osType = osType;
-    _deviceId = deviceId;
+    // _deviceId = deviceId;
     _deviceName = deviceName;
-    _isPhysicalDevice = isPhysicalDevice ?? false;
+    // _isPhysicalDevice = isPhysicalDevice ?? false;
     _userAgent = kIsWeb
         ? _web.userAgent
         : Uri.encodeFull(

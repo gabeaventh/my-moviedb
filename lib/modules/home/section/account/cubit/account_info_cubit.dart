@@ -11,7 +11,7 @@ class AccountInfoCubit extends Cubit<AccountInfoState> {
   void getAccountInfo() async {
     emit(AccountInfoState.loading());
     try {
-      DateTime? _lastOnline;
+      // DateTime? _lastOnline;
 
       // if (Env.instance?.isTest == false) {
       //   // _lastOnline = await AuthenticationService.instance.getLastOnlineTime();
