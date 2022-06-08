@@ -14,36 +14,6 @@ class InitApp extends StatefulWidget {
 
 class _InitAppState extends State<InitApp> {
   Future init() async {
-    // Hive.init("${(await getApplicationDocumentsDirectory()).path}/hive");
-    // DeviceInfoPlugin _deviceInfo = DeviceInfoPlugin();
-    // PackageInfo _packageInfo = await PackageInfo.fromPlatform();
-    // AndroidDeviceInfo _android = await _deviceInfo.androidInfo;
-    // WebBrowserInfo _web = await _deviceInfo.webBrowserInfo;
-    // debugPrint('MASUK');
-
-    // /// web is used for development purposes
-    // if (kIsWeb) {
-    //   await NetworkInterface.instance.setDevicePreference(
-    //     // deviceName: _web.vendor,
-    //     osType: "Web",
-    //     // appName: _packageInfo.appName,
-    //     // buildNumber: _packageInfo.buildNumber,
-    //     // version: _packageInfo.version,
-    //   );
-    // } else {
-    //   /// Android is the only supported platform for now
-    //   await NetworkInterface.instance.setDevicePreference(
-    //     deviceId: _android.androidId,
-    //     deviceName: _android.model,
-    //     isPhysicalDevice: _android.isPhysicalDevice,
-    //     osType: "Android",
-    //     appName: _packageInfo.appName,
-    //     buildNumber: _packageInfo.buildNumber,
-    //     sdkVersion: _android.version.sdkInt.toString(),
-    //     version: _packageInfo.version,
-    //   );
-    // }
-
     Log.init();
 
     Env.instance?.initEnv();

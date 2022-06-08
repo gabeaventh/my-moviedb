@@ -11,7 +11,6 @@ void main() {
     () {
       runZonedGuarded(() async {
         WidgetsFlutterBinding.ensureInitialized();
-        // await Firebase.initializeApp();
         runApp(InitApp());
       }, (e, s) {
         debugPrint('Error: $e');

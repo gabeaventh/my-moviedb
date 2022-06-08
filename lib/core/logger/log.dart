@@ -6,18 +6,13 @@ class Log {
   static const String loggerName = "Logger";
   static late Logger _instance;
   static void init() {
-    debugPrint('MASUK111');
-
     Logger.root.level = Level.ALL;
-    debugPrint('MASUK222');
 
     Logger.root.onRecord.listen((event) {
       debugPrint("${event.level.name}: ${event.message}");
     });
-    debugPrint('MASUK333');
 
     _instance = Logger(loggerName);
-    debugPrint('MASUK444');
   }
 
   static void info([tag, message, Object? error, StackTrace? stackTrace]) =>
