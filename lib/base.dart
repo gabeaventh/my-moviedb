@@ -13,6 +13,7 @@ class AppBase extends StatelessWidget {
       navigatorKey: Get.key,
       navigatorObservers: [GetObserver()],
       title: 'Movie DB',
+      debugShowCheckedModeBanner: false,
 
       /// [AppRoutes.getRoutes] is the routes of the application.
       getPages: AppRoutes.getRoutes,
