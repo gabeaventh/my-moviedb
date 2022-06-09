@@ -4,8 +4,7 @@ My Movie DB
 
 ## NOTE
 
-this project doesn't have any kind of unit test
-i didnt have much time to develop this even from skeleton apps
+this project doesn't have any kind of unit test yet
 
 ## Getting Started
 
